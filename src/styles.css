@@ -1,0 +1,83 @@
+/* ------------------------------------------------------------------
+   Everything Tailwind cannot express: the 3-D flip, the mermaid frame,
+   the syntax-highlight palette and the resizable panel gutters.
+   Colours are named in comments against the design system.
+   ------------------------------------------------------------------ */
+
+html,body,#root { height:100%; }
+body {
+  background:#F8F9FB;          /* neutrals.greybg */
+  color:#2C2C2C;               /* neutrals.black  */
+  overflow:hidden;
+  font-family:'Noto Sans','Noto Sans JP',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+::-webkit-scrollbar { width:10px; height:10px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:#CAD0DD; border-radius:8px; border:2px solid #F8F9FB; }
+::-webkit-scrollbar-thumb:hover { background:#9E9FBF; }
+
+/* ---- flashcard flip ---- */
+.flip { perspective: 2000px; }
+.flip-inner { display:grid; transform-style:preserve-3d; transition:transform .55s cubic-bezier(.2,.8,.2,1); }
+.flip-inner > .face { grid-area:1/1; backface-visibility:hidden; -webkit-backface-visibility:hidden; }
+.face-back { transform: rotateY(180deg); }
+.flip-inner.flipped, .flipped .flip-inner { transform: rotateY(180deg); }
+
+/* ---- mermaid diagram ---- */
+.diagram {
+  overflow-x:auto; color:#102A43;                        /* primary.500 */
+  background:#FAFDFF;                                    /* secondary.100 */
+  border:1px solid #D5DDEA;                              /* neutrals.hawkesBlue */
+  border-radius:12px; padding:12px 14px;
+  cursor: zoom-in;
+}
+.diagram::-webkit-scrollbar { height:6px; }
+/* natural size + scroll keeps the labels readable in a narrow panel;
+   the zoom overlay is where you go for the whole picture. */
+.mermaid-fit svg { max-width:none; height:auto; display:block; margin:0 auto; }
+
+/* `zoom` (not transform) so the scroll container grows with the diagram */
+.diagram-zoom { cursor: zoom-out; width:max-content; margin:0 auto; }
+.mermaid-grow svg { display:block; }
+
+.mermaid-loading { font-size:11px; color:#9E9FBF; padding:18px 0; text-align:center; }
+.mermaid-src {
+  font-family:'JetBrains Mono',monospace; font-size:10.5px; line-height:1.5;
+  white-space:pre; overflow-x:auto; color:#CE3504;        /* error.error */
+}
+
+/* ---- syntax highlight: every token is a design-system color ---- */
+.code { font-family:'JetBrains Mono',monospace; font-size:12px; line-height:1.6; white-space:pre; overflow-x:auto; color:#102A43; }
+.t-com { color:#9E9FBF; font-style:italic; }   /* neutrals.grey      */
+.t-str { color:#298000; }                      /* alert.succeedBg    */
+.t-atm { color:#028ADE; }                      /* azure.500          */
+.t-kw  { color:#312DFF; font-weight:600; }     /* punkPrimary.500     */
+.t-mod { color:#01588D; font-weight:600; }     /* azure.700          */
+.t-num { color:#CE3504; }                      /* error.error        */
+.t-op  { color:#DB7600; }                      /* alert.warningIcon  */
+
+/* ---- resizable / collapsible 3-panel layout ---- */
+.panels { display:flex; flex-direction:column; gap:12px; }
+@media (min-width: 1024px) { .panels { flex-direction:row; gap:0; } }
+
+.gutter {
+  flex:0 0 12px; align-self:stretch; cursor:col-resize;
+  display:flex; align-items:center; justify-content:center;
+  touch-action:none;
+}
+.gutter-static { cursor:default; }
+.gutter i {
+  display:block; width:3px; height:46px; border-radius:3px;
+  background:#D5DDEA;                       /* neutrals.hawkesBlue */
+  transition:background .15s, height .15s;
+}
+.gutter:not(.gutter-static):hover i,
+.gutter.dragging i { background:#312DFF; height:72px; }   /* punkPrimary.500 */
+body.resizing, body.resizing * { cursor:col-resize !important; user-select:none; }
+
+.vtext { writing-mode:vertical-rl; transform:rotate(180deg); }
+
+/* opacity only: animating transform would make this element the containing
+   block for position:fixed children (the diagram overlay lives inside). */
+.fade-in { animation: fade .3s ease both; }
+@keyframes fade { from { opacity:0; } to { opacity:1; } }
