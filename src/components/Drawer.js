@@ -87,49 +87,49 @@ export function Drawer() {
 
       <div class="flex-1 overflow-y-auto p-3">
         ${moduleGroups.map(
-            (moduleGroup) =>
-              html` <div class="mb-4">
-                <div
-                  class="text-[10px] uppercase tracking-[0.18em] text-neutrals-grey px-2 mb-1.5"
-                >
-                  ${moduleGroup.moduleTitle}
-                </div>
-                ${moduleGroup.cards.map((card) => {
-                const cardIndex = card.position - 1;
-                const isCurrentCard = cardIndex === currentCardIndex;
-                const isCardMastered = masteredSlugs.has(card.slug);
+          (moduleGroup) =>
+            html` <div class="mb-4">
+              <div
+                class="text-[10px] uppercase tracking-[0.18em] text-neutrals-grey px-2 mb-1.5"
+              >
+                ${moduleGroup.moduleTitle}
+              </div>
+              ${moduleGroup.cards.map((card) => {
+                  const cardIndex = card.position - 1;
+                  const isCurrentCard = cardIndex === currentCardIndex;
+                  const isCardMastered = masteredSlugs.has(card.slug);
 
-                return html` <button
-                  onClick=${() => {
-                      showCard(cardIndex);
-                      closeDrawer();
-                    }}
-                  class="w-full text-left px-2.5 py-1.5 rounded-lg flex items-center gap-2.5 transition
+                  return html` <button
+                    onClick=${() => {
+                    showCard(cardIndex);
+                    closeDrawer();
+                  }}
+                    class="w-full text-left px-2.5 py-1.5 rounded-lg flex items-center gap-2.5 transition
                            ${
                              isCurrentCard
                                ? "bg-secondary-500 text-primary-500 font-semibold"
                                : "hover:bg-secondary-300 text-neutrals-greyDark"
                            }"
-                >
-                  <span
-                    class="text-[10px] font-mono w-6 shrink-0 ${isCardMastered ? "text-alert-succeedBg" : "text-neutrals-greyDisabled"}"
                   >
-                    ${isCardMastered ? "✓" : String(card.position).padStart(2, "0")}
-                  </span>
-                  <span class="text-[12.5px] truncate">${card.title}</span>
-                </button>`;
-              })}
-              </div>`,
-          )}
+                    <span
+                      class="text-[10px] font-mono w-6 shrink-0 ${isCardMastered ? "text-alert-succeedBg" : "text-neutrals-greyDisabled"}"
+                    >
+                      ${isCardMastered ? "✓" : String(card.position).padStart(2, "0")}
+                    </span>
+                    <span class="text-[12.5px] truncate">${card.title}</span>
+                  </button>`;
+                })}
+            </div>`,
+        )}
         ${
-            matchingCards.length === 0
-              ? html`<div
-                  class="text-center text-neutrals-grey text-caption py-10"
-                >
-                  nothing matches
-                </div>`
-              : null
-          }
+          matchingCards.length === 0
+            ? html`<div
+                class="text-center text-neutrals-grey text-caption py-10"
+              >
+                nothing matches
+              </div>`
+            : null
+        }
       </div>
     </div>
   </div>`;

@@ -12,10 +12,10 @@ export function KeyHints() {
   >
     <span class="text-neutrals-greyDark">keys:</span>
     ${KEY_HINTS.map(
-        (hint, hintIndex) =>
-          html` ${hintIndex ? html`<span> · </span>` : null}
-            ${hint.keys.map((keyLabel) => html`<kbd class=${KBD_CLASS}>${keyLabel}</kbd> `)}
-            <span>${hint.action}</span>`,
-      )}
+      (hint, hintIndex) =>
+        html` ${hintIndex ? html`<span> · </span>` : null}
+          ${hint.keys.map((keyLabel) => html`<kbd class=${KBD_CLASS}>${keyLabel}</kbd> `)}
+          <span>${hint.action}</span>`,
+    )}
   </div>`;
 }

@@ -57,17 +57,17 @@ export function Panel({ title, tint, badge, panelIndex, children }) {
       <div class="flex items-center gap-2 shrink-0">
         ${badge ? html`<span class="text-[10px] text-neutrals-grey">${badge}</span>` : null}
         ${
-            canCollapse
-              ? html` <button
-                  onClick=${toggleThisPanel}
-                  title="collapse panel"
-                  class="w-5 h-5 grid place-items-center rounded border border-neutrals-hawkesBlue bg-neutrals-white
+          canCollapse
+            ? html` <button
+                onClick=${toggleThisPanel}
+                title="collapse panel"
+                class="w-5 h-5 grid place-items-center rounded border border-neutrals-hawkesBlue bg-neutrals-white
                            text-neutrals-greyDark hover:text-punkPrimary-500 hover:border-punkPrimary-400 text-[13px] leading-none"
-                >
-                  −
-                </button>`
-              : null
-          }
+              >
+                −
+              </button>`
+            : null
+        }
       </div>
     </header>
     <div class="flex-1 min-h-0 overflow-y-auto">${children}</div>

@@ -20,26 +20,26 @@ export function TabBar() {
 
   return html` <nav class="shrink-0 flex gap-1.5 px-3 pt-3">
     ${PANEL_TABS.map(
-        (tab, tabIndex) =>
-          html` <button
-            onClick=${() => setActiveTab(tabIndex)}
-            class="flex-1 min-w-0 px-1 py-2 rounded-xl border text-[10.5px] font-bold uppercase tracking-[0.12em] truncate transition
+      (tab, tabIndex) =>
+        html` <button
+          onClick=${() => setActiveTab(tabIndex)}
+          class="flex-1 min-w-0 px-1 py-2 rounded-xl border text-[10.5px] font-bold uppercase tracking-[0.12em] truncate transition
                        ${
                          tabIndex === activeTabIndex
                            ? "bg-neutrals-white border-neutrals-greyTableBorder shadow-cardInfo " +
                              tab.tint
                            : "bg-transparent border-transparent text-neutrals-grey"
                        }"
-          >
-            ${tab.label}
-            ${
-            tabIndex === CODE_TAB_INDEX && codeSampleCount
-              ? html`<span class="ml-1 font-normal opacity-60"
-                  >${codeSampleCount}</span
-                >`
-              : null
-          }
-          </button>`,
-      )}
+        >
+          ${tab.label}
+          ${
+              tabIndex === CODE_TAB_INDEX && codeSampleCount
+                ? html`<span class="ml-1 font-normal opacity-60"
+                    >${codeSampleCount}</span
+                  >`
+                : null
+            }
+        </button>`,
+    )}
   </nav>`;
 }

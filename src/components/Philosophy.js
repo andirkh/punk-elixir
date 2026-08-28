@@ -22,12 +22,12 @@ export function Philosophy() {
     ></p>
 
     ${philosophy.body.map(
-        (paragraph) =>
-          html` <p
-            class="text-[13.5px] leading-[1.75] text-neutrals-black mb-4"
-            dangerouslySetInnerHTML=${{ __html: prose(paragraph) }}
-          ></p>`,
-      )}
+      (paragraph) =>
+        html` <p
+          class="text-[13.5px] leading-[1.75] text-neutrals-black mb-4"
+          dangerouslySetInnerHTML=${{ __html: prose(paragraph) }}
+        ></p>`,
+    )}
 
     <div class="my-5">
       <div

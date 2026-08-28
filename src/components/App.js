@@ -41,58 +41,55 @@ export function App() {
 
     <main class="panels flex-1 min-h-0 p-3">
       ${
-          isPanelVisible(PHILOSOPHY_PANEL)
-            ? html` <div
-                class="min-h-0 min-w-0"
-                style=${panelStyle(PHILOSOPHY_PANEL)}
+        isPanelVisible(PHILOSOPHY_PANEL)
+          ? html` <div
+              class="min-h-0 min-w-0"
+              style=${panelStyle(PHILOSOPHY_PANEL)}
+            >
+              <${Panel}
+                panelIndex=${PHILOSOPHY_PANEL}
+                title="Philosophy"
+                tint=${PANEL_TABS[PHILOSOPHY_PANEL].tint}
+                badge="why it works this way"
               >
-                <${Panel}
-                  panelIndex=${PHILOSOPHY_PANEL}
-                  title="Philosophy"
-                  tint=${PANEL_TABS[PHILOSOPHY_PANEL].tint}
-                  badge="why it works this way"
-                >
-                  <${Philosophy} />
-                <//>
-              </div>`
-            : null
-        }
+                <${Philosophy} />
+              <//>
+            </div>`
+          : null
+      }
       ${isWideLayout ? html`<${Gutter} gutterIndex=${0} />` : null}
       ${
-          isPanelVisible(FLASHCARD_PANEL)
-            ? html` <div
-                class="min-h-0 min-w-0"
-                style=${panelStyle(FLASHCARD_PANEL)}
+        isPanelVisible(FLASHCARD_PANEL)
+          ? html` <div
+              class="min-h-0 min-w-0"
+              style=${panelStyle(FLASHCARD_PANEL)}
+            >
+              <${Panel}
+                panelIndex=${FLASHCARD_PANEL}
+                title="Flashcard"
+                tint=${PANEL_TABS[FLASHCARD_PANEL].tint}
+                badge=${"card " + card.position}
               >
-                <${Panel}
-                  panelIndex=${FLASHCARD_PANEL}
-                  title="Flashcard"
-                  tint=${PANEL_TABS[FLASHCARD_PANEL].tint}
-                  badge=${"card " + card.position}
-                >
-                  <${StudyPanel} />
-                <//>
-              </div>`
-            : null
-        }
+                <${StudyPanel} />
+              <//>
+            </div>`
+          : null
+      }
       ${isWideLayout ? html`<${Gutter} gutterIndex=${1} />` : null}
       ${
-          isPanelVisible(CODE_PANEL)
-            ? html` <div
-                class="min-h-0 min-w-0"
-                style=${panelStyle(CODE_PANEL)}
+        isPanelVisible(CODE_PANEL)
+          ? html` <div class="min-h-0 min-w-0" style=${panelStyle(CODE_PANEL)}>
+              <${Panel}
+                panelIndex=${CODE_PANEL}
+                title="Try it in iex"
+                tint=${PANEL_TABS[CODE_PANEL].tint}
+                badge=${codeSampleCount ? codeSampleCount + " sample" + (codeSampleCount > 1 ? "s" : "") : ""}
               >
-                <${Panel}
-                  panelIndex=${CODE_PANEL}
-                  title="Try it in iex"
-                  tint=${PANEL_TABS[CODE_PANEL].tint}
-                  badge=${codeSampleCount ? codeSampleCount + " sample" + (codeSampleCount > 1 ? "s" : "") : ""}
-                >
-                  <${CodeSamples} />
-                <//>
-              </div>`
-            : null
-        }
+                <${CodeSamples} />
+              <//>
+            </div>`
+          : null
+      }
     </main>
 
     ${state.isDiagramZoomOpen.value ? html`<${DiagramZoom} />` : null}

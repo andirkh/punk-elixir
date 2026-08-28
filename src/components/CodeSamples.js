@@ -14,11 +14,11 @@ export function CodeSamples() {
 
   return html` <div class="p-4 fade-in" key=${card.slug}>
     ${cardContent.codeSamples.map(
-        (codeSample, sampleIndex) =>
-          html` <${CodeBlock}
-            codeSample=${codeSample}
-            key=${card.slug + "-" + sampleIndex}
-          />`,
-      )}
+      (codeSample, sampleIndex) =>
+        html` <${CodeBlock}
+          codeSample=${codeSample}
+          key=${card.slug + "-" + sampleIndex}
+        />`,
+    )}
   </div>`;
 }

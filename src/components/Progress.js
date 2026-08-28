@@ -31,13 +31,13 @@ export function Progress() {
     </div>
     <div class="mt-3 flex flex-wrap gap-1">
       ${CARDS.map(
-          (deckCard, deckIndex) =>
-            html` <button
-              title=${deckCard.position + ". " + deckCard.title}
-              onClick=${() => showCard(deckIndex)}
-              class="h-2 w-2.5 sm:h-1.5 sm:w-[9px] rounded-full transition ${dotColour(deckCard, deckIndex)}"
-            ></button>`,
-        )}
+        (deckCard, deckIndex) =>
+          html` <button
+            title=${deckCard.position + ". " + deckCard.title}
+            onClick=${() => showCard(deckIndex)}
+            class="h-2 w-2.5 sm:h-1.5 sm:w-[9px] rounded-full transition ${dotColour(deckCard, deckIndex)}"
+          ></button>`,
+      )}
     </div>
   </div>`;
 }
